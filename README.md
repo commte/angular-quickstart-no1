@@ -2,9 +2,33 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.8.
 
-## Development server
+## Flow
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Angular CLI をインストール
+
+```bash
+npm install -g @angular/cli
+```
+
+インストール
+
+```bash
+ng new angular-quickstart-no1
+cd angular-quickstart-no1
+```
+
+.git 削除
+
+```bash
+rm -rf .git  # OS/X (bash)
+rd .git /S/Q # windows
+```
+
+実行
+
+```bash
+ng serve --open
+```
 
 ## Code scaffolding
 
@@ -25,4 +49,5 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
 # angular-quickstart-no1
