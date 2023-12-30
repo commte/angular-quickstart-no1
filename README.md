@@ -39,6 +39,60 @@ git commit -m "first commit"
 git push origin main
 ```
 
+開発サーバーの起動
+
+```bash
+npm start
+```
+
+ビルドとテスト
+
+```bash
+# ビルド
+npm run build
+
+# テスト
+npm run test
+
+```
+
+### Tailwind CSS
+
+インストール
+
+```bash
+npm install -D tailwindcss postcss autoprefixer
+npx tailwindcss init
+```
+
+tailwind.config.js
+
+```js
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  content: ["./src/**/*.{html,ts}"],
+  theme: {
+    extend: {},
+  },
+  plugins: [],
+};
+```
+
+styles.css
+
+```css
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+```
+
+```bash
+ng serve
+```
+
+Install Tailwind CSS with Angular - Tailwind CSS
+https://tailwindcss.com/docs/guides/angular
+
 ## Code scaffolding
 
 Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
