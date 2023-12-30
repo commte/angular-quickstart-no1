@@ -30,6 +30,15 @@ rd .git /S/Q # windows
 ng serve --open
 ```
 
+github に push
+
+```bash
+git status
+git add .
+git commit -m "first commit"
+git push origin main
+```
+
 ## Code scaffolding
 
 Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
