@@ -93,6 +93,25 @@ ng serve
 Install Tailwind CSS with Angular - Tailwind CSS
 https://tailwindcss.com/docs/guides/angular
 
+### 新しいコンポーネントの作成
+
+以下のコマンドで新しいコンポーネントを作成します。
+
+```bash
+ng generate component <component-name>
+```
+
+### コンポーネントの編集
+
+src/app/app.component.html
+
+```html
+<div class="flex flex-col items-center justify-center min-h-screen py-2">
+  <h1 class="text-5xl">Welcome to {{ title }}!</h1>
+  <img width="300" src="https://angular.io/assets/images/logos/angular/angular.svg" />
+</div>
+```
+
 ## Code scaffolding
 
 Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
