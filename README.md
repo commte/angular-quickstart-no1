@@ -101,35 +101,78 @@ https://tailwindcss.com/docs/guides/angular
 ng generate component <component-name>
 ```
 
-### コンポーネントの編集
+### app.component.html
 
-src/app/app.component.html
+このファイルは MyComponentComponent のテンプレートを定義しており、「my-component が表示されました!」というテキストを含む単純なパラグラフを表示します。これらのファイルは、Angular アプリケーションの基本的な構造を構成する良い例です。AppComponent がメインのコンポーネントであり、MyComponentComponent はその中で使用される子コンポーネントです。このようにコンポーネントを組み合わせることで、より複雑なアプリケーションを構築できます。
 
 ```html
 <div class="flex flex-col items-center justify-center min-h-screen py-2">
   <h1 class="text-5xl">Welcome to {{ title }}!</h1>
-  <img width="300" src="https://angular.io/assets/images/logos/angular/angular.svg" />
 </div>
 ```
 
-## Code scaffolding
+### app.component.ts
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+```ts
+// angular-quickstart-no1/src/app/my-component/my-component.component.ts
 
-## Build
+// AngularのコアライブラリからComponentとOnInitをインポート
+import { Component, OnInit } from "@angular/core";
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+// 特定のクラスがAngularコンポーネントであることをフレームワークに伝えます
+@Component({
+  selector: "app-my-component", // コンポーネントのセレクター名を定義。HTMLで <app-my-component> として使用
+  standalone: true, // スタンドアロンコンポーネントを示す。独立して存在し、他のモジュールに含まれない
+  templateUrl: "./my-component.component.html", // コンポーネントのテンプレートファイルのパス
+  styleUrls: ["./my-component.component.scss"], // コンポーネントのスタイルファイルのパス
+})
+export class MyComponentComponent implements OnInit {
+  // MyComponentComponentクラスの定義。OnInitインターフェースを実装
+  constructor() {} // コンストラクタ。コンポーネントの初期化時に呼ばれる
 
-## Running unit tests
+  ngOnInit(): void {} // ngOnInitメソッド。コンポーネントの初期化時に呼ばれるライフサイクルフック
+}
+```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+@Component デコレータは、このクラスが Angular のコンポーネントであることを示します。selector はこのコンポーネントの HTML タグ名を定義し、templateUrl と styleUrls はそれぞれこのコンポーネントの HTML と CSS ファイルへのパスです。imports 配列に MyComponentComponent を含めることで、このコンポーネント内で MyComponentComponent を使用できるようになります。
 
-## Running end-to-end tests
+### スタンドアロンコンポーネント
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+@Component デコレータがあるだけでは、そのコンポーネントがスタンドアロンであるかどうかを判断することはできません。スタンドアロンコンポーネントかどうかを確認するためには、@Component デコレータ内の設定を確認する必要があります。
 
-## Further help
+```ts
+@Component({
+  selector: "app-example",
+  standalone: true, // これがスタンドアロンコンポーネントであることを示す
+  templateUrl: "./example.component.html",
+  styleUrls: ["./example.component.scss"],
+})
+export class ExampleComponent {
+  // コンポーネントのロジック
+}
+```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+スタンドアロンコンポーネントであるかを判断するためのキーは、@Component デコレータ内で standalone: true が設定されているかどうかです。
 
-# angular-quickstart-no1
+### @Component と、@NgModule が混在していることはありますか？
+
+@Component と @NgModule が同じファイル内に混在していることはありますが、それは比較的珍しいケースです。通常、Angular アプリケーションでは、コンポーネント（@Component で定義される）とモジュール（@NgModule で定義される）は別々のファイルに配置されます。しかし、特定の状況下では、これらが 1 つのファイル内に共存することもあります。
+
+### @NgModule
+
+@Component はアプリケーションのビューを構成する個々の要素を定義し、それぞれの要素の見た目と振る舞いを指定します。@NgModule はアプリケーションの異なる部分（コンポーネントやサービスなど）をグループ化し、アプリケーションの構造と依存関係を整理します。@NgModule は Angular で用いられるデコレータで、アプリケーションの一部をモジュールとしてまとめる役割を担います。モジュールは Angular アプリケーションの構成要素で、関連するコンポーネント、サービス、ディレクティブ、パイプなどをグループ化し、機能的な単位を形成します。
+
+### ディレクティブ（Directive）
+
+Angular における「ディレクティブ（Directive）」は、HTML 要素の外見や振る舞いを動的に変更するための重要な機能です。ディレクティブは、HTML テンプレートに新しい動作を追加したり、既存の要素を変更したりするために使用されます。
+
+Angular には大きく分けて 3 種類のディレクティブがあります：
+
+1. コンポーネントディレクティブ:
+   これは実際には特別な種類のディレクティブで、テンプレート（HTML）とロジック（TypeScript）を組み合わせて、アプリケーションの UI 部分を形成します。Angular では、コンポーネントもディレクティブの一種と見なされます。
+
+2. 構造ディレクティブ:
+   構造ディレクティブは、DOM における要素の構造を変更します。たとえば、要素を追加したり削除したりすることができます。代表的な構造ディレクティブには *ngIf（条件に基づいて要素を表示/非表示にする）や *ngFor（リストをループして要素を繰り返し表示する）があります。
+
+3. 属性ディレクティブ:
+   属性ディレクティブは、要素の外見や動作を変更しますが、その構造は変えません。例えば、ngStyle や ngClass ディレクティブは、要素のスタイルやクラスを動的に変更するのに使用されます。
