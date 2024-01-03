@@ -1,4 +1,4 @@
-// Angular/angular-quickstart-no1/src/app/app.component.ts
+// /src/app/app.component.ts
 
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
