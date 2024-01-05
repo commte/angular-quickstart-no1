@@ -7,15 +7,10 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './my-component.component.html',
   styleUrls: ['./my-component.component.scss'],
 })
-  
 export class MyComponentComponent implements OnInit {
-  name: string;
+  // name 属性追加
+  name = 'hoge';
+  constructor() {}
 
-  constructor(name: string) {
-    this.name = name;
-  }
-
-  ngOnInit() {
-    this.name = 'クラウド';
-  }
+  ngOnInit(): void {}
 }
